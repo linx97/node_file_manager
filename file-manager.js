@@ -81,22 +81,18 @@ function replaceWord(fileName, oldWord, newWord) {
 }
 
 function findLine(fileName, word) {
-	word.toLowerCase();
 	fs.readFile(fileName, function(err, data) {
-		console.log(data);
 		data = data.toString();
 		data = data.split("\n");
-		console.log(data);
 		if (err) {
 			console.log("Unable to find line");
 		} else {
 			var lines = [];
-			for (var i = 0; i < data.length; i++) {
-				if (data[i].includes(" " + word) || data[i].includes(word + " ")) {
-					lines.push(i + 1);
+			for (var i of data) {
+				if (i.includes(word)) {
+					console.log(i);
 				}
 			}
-			console.log(lines.join(", "));
 		}
 	});
 }
